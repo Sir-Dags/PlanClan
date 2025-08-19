@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read general user data for member display, but only create/update their own document.
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth.uid == userId;
+    }
+
+    // Users can only create, read, update, and delete events that they own.
+    // The ownerId on the event must match the logged-in user's ID.
+    match /events/{eventId} {
+      allow read, delete: if request.auth.uid == resource.data.ownerId;
+      allow create, update: if request.auth.uid == request.resource.data.ownerId;
+    }
+  }
+}
