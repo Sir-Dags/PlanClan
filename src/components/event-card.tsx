@@ -2,7 +2,7 @@
 'use client';
 
 import type { Event } from '@/lib/types';
-import { familyMembers } from '@/lib/data';
+import { clanMembers } from '@/lib/data';
 import {
   Card,
   CardContent,
@@ -36,7 +36,7 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   const { toggleEventCompletion } = useEvents();
-  const assignedMembers = familyMembers.filter((member) =>
+  const assignedMembers = clanMembers.filter((member) =>
     event.assignedMemberIds.includes(member.id)
   );
 

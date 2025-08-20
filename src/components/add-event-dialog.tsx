@@ -42,7 +42,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
-import { familyMembers } from '@/lib/data';
+import { clanMembers } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
 import { useEvents } from '@/context/EventContext';
 import { suggestOptimalTime, type SuggestOptimalTimeOutput } from '@/ai/flows/suggest-optimal-time';
@@ -174,10 +174,10 @@ export function AddEventDialog({ initialDate, trigger }: { initialDate?: Date, t
     setAISuggestion(null);
 
     const existingSchedule = events
-      .map(e => `- ${e.title} for ${familyMembers.filter(m => e.assignedMemberIds.includes(m.id)).map(m => m.name).join(', ')} from ${format(e.startTime, 'p')} to ${format(e.endTime, 'p')} on ${format(e.startTime, 'MMM d')}`)
+      .map(e => `- ${e.title} for ${clanMembers.filter(m => e.assignedMemberIds.includes(m.id)).map(m => m.name).join(', ')} from ${format(e.startTime, 'p')} to ${format(e.endTime, 'p')} on ${format(e.startTime, 'MMM d')}`)
       .join('\n');
 
-    const selectedMembers = familyMembers
+    const selectedMembers = clanMembers
         .filter(m => data.members.toLowerCase().includes(m.name.toLowerCase()))
         .map(m => m.name)
         .join(', ');
@@ -226,7 +226,7 @@ export function AddEventDialog({ initialDate, trigger }: { initialDate?: Date, t
                 description: smartSchedulerForm.getValues("description"),
                 startDateTime: parsedDate,
                 endDateTime: endTime,
-                assignedMemberIds: familyMembers.filter(m => smartSchedulerForm.getValues("members").toLowerCase().includes(m.name.toLowerCase())).map(m => m.id),
+                assignedMemberIds: clanMembers.filter(m => smartSchedulerForm.getValues("members").toLowerCase().includes(m.name.toLowerCase())).map(m => m.id),
             });
             toast({
               title: "Form Pre-filled",
@@ -408,7 +408,7 @@ export function AddEventDialog({ initialDate, trigger }: { initialDate?: Date, t
                           </FormDescription>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                        {familyMembers.map((item) => (
+                        {clanMembers.map((item) => (
                           <FormField
                             key={item.id}
                             control={eventForm.control}
@@ -491,7 +491,7 @@ export function AddEventDialog({ initialDate, trigger }: { initialDate?: Date, t
                               name="members"
                               render={({ field }) => (
                                   <FormItem>
-                                      <FormLabel>Family Members</FormLabel>
+                                      <FormLabel>Clan Members</FormLabel>
                                       <Input placeholder="e.g., James, Brendan" {...field} />
                                       <FormDescription>
                                       Enter names of members involved, comma separated.

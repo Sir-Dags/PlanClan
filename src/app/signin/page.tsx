@@ -78,7 +78,7 @@ export default function SignInPage() {
                 <Icons.Logo className="h-8 w-8 text-primary" />
                 <h1 className="text-3xl font-bold font-headline">PlanClan</h1>
             </div>
-            <p className="text-muted-foreground">Your family's shared calendar, simplified.</p>
+            <p className="text-muted-foreground">Your clan's shared calendar, simplified.</p>
         </div>
         <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="signin">Sign In</TabsTrigger>
@@ -125,7 +125,7 @@ export default function SignInPage() {
                 <CardHeader>
                     <CardTitle>Sign Up</CardTitle>
                     <CardDescription>
-                    Create an account to start planning with your family.
+                    Create an account to start planning with your clan.
                     </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleEmailSignUp}>

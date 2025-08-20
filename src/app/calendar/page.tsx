@@ -6,7 +6,7 @@ import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { SiteSidebar } from '@/components/site-sidebar';
 import { SiteHeader } from '@/components/site-header';
 import { Calendar } from '@/components/ui/calendar';
-import { familyMembers } from '@/lib/data';
+import { clanMembers } from '@/lib/data';
 import type { Event } from '@/lib/types';
 import { format, isSameDay, startOfDay } from 'date-fns';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
@@ -49,7 +49,7 @@ function CalendarPageContent() {
   }, [selectedDate, filteredEvents]);
 
   const getAssignedMembers = (event: Event) => {
-    return familyMembers.filter(member => event.assignedMemberIds.includes(member.id));
+    return clanMembers.filter(member => event.assignedMemberIds.includes(member.id));
   };
   
   const CalendarSkeleton = () => (

@@ -1,5 +1,5 @@
 
-export type FamilyMember = {
+export type ClanMember = {
   id: string;
   name: string;
   avatar: string;

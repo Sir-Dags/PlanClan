@@ -26,7 +26,7 @@ import {
 } from '@/components/ui/collapsible';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { familyMembers } from '@/lib/data';
+import { clanMembers } from '@/lib/data';
 import { Icons } from '@/components/icons';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Calendar, Cog, Download, Upload, Users, Columns2, ChevronDown, Archive, LayoutDashboard } from 'lucide-react';
@@ -106,10 +106,10 @@ export function SiteSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center">
             <Users className="mr-2"/>
-            Family Members
+            Clan Members
           </SidebarGroupLabel>
           <div className="space-y-2">
-            {familyMembers.map((member) => (
+            {clanMembers.map((member) => (
               <div key={member.id} className="flex items-center gap-3 px-2 py-1.5">
                  <Avatar className="h-8 w-8">
                   <Image src={member.avatar} alt={member.name} width={32} height={32} data-ai-hint="person portrait" />

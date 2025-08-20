@@ -21,7 +21,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, Sparkles, Wand2, Lightbulb, CheckCircle2, AlertTriangle } from 'lucide-react';
-import { familyMembers, events } from '@/lib/data';
+import { clanMembers, events } from '@/lib/data';
 import { format } from 'date-fns';
 
 type State = {
@@ -50,11 +50,11 @@ export function SmartSchedulerDialog() {
       return null;
     }
     const existingSchedule = events
-      .map(e => `- ${e.title} for ${familyMembers.filter(m => e.assignedMemberIds.includes(m.id)).map(m => m.name).join(', ')} from ${format(e.startTime, 'p')} to ${format(e.endTime, 'p')} on ${format(e.startTime, 'MMM d')}`)
+      .map(e => `- ${e.title} for ${clanMembers.filter(m => e.assignedMemberIds.includes(m.id)).map(m => m.name).join(', ')} from ${format(e.startTime, 'p')} to ${format(e.endTime, 'p')} on ${format(e.startTime, 'MMM d')}`)
       .join('\n');
     
     const members = formData.get('members') as string;
-    const selectedMembers = familyMembers.filter(m => members.includes(m.id)).map(m => m.name).join(', ');
+    const selectedMembers = clanMembers.filter(m => members.includes(m.id)).map(m => m.name).join(', ');
     
     try {
       const result = await suggestOptimalTime({
@@ -103,7 +103,7 @@ export function SmartSchedulerDialog() {
             <Input id="newEventDuration" name="newEventDuration" placeholder="e.g., 1 hour, 45 minutes" required />
           </div>
           <div>
-            <Label htmlFor="members">Family Members</Label>
+            <Label htmlFor="members">Clan Members</Label>
             <Input id="members" name="members" placeholder="Alex, Brenda" required />
             <p className="text-sm text-muted-foreground mt-1">
               Enter names of members involved, comma separated.

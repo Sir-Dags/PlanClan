@@ -30,7 +30,7 @@ const SuggestOptimalTimeInputSchema = z.object({
     .describe(
       'Any constraints on the new event time, e.g., must be after 3 PM, must be on a weekday.'
     ),
-  members: z.string().describe('The family members involved in the event.'),
+  members: z.string().describe('The clan members involved in the event.'),
   preferredDate: z.string().optional().describe('The user\'s preferred date for the event, if they have selected one on the calendar.'),
 });
 export type SuggestOptimalTimeInput = z.infer<typeof SuggestOptimalTimeInputSchema>;
@@ -61,7 +61,7 @@ const prompt = ai.definePrompt({
   name: 'suggestOptimalTimePrompt',
   input: {schema: SuggestOptimalTimeInputSchema},
   output: {schema: SuggestOptimalTimeOutputSchema},
-  prompt: `You are a scheduling assistant helping a family find the best time for new events.
+  prompt: `You are a scheduling assistant helping a clan find the best time for new events.
 
   Your goal is to find a time that works for everyone involved, avoiding conflicts as much as possible.
 
@@ -70,7 +70,7 @@ const prompt = ai.definePrompt({
   Description: {{description}}
   Use this description to understand the nature of the event (e.g., if it's high-energy or a quiet activity) to better inform your scheduling suggestion.
 
-  Here is the family's existing schedule:
+  Here is the clan's existing schedule:
   {{existingSchedule}}
 
   The new event is for: {{members}}.
@@ -86,7 +86,7 @@ const prompt = ai.definePrompt({
   Suggest an optimal time for this new event. Analyze the schedule for potential conflicts with the specified members.
   - The final suggestedTime must be in the format 'MMM d, yyyy, h:mm a' (e.g., 'Aug 15, 2024, 3:00 PM').
   - Determine the likelihood of a conflict (low, medium, high).
-  - If there are conflicts, list the specific events that overlap, including their titles, and which family members are involved in those conflicts.
+  - If there are conflicts, list the specific events that overlap, including their titles, and which clan members are involved in those conflicts.
   - Provide a clear reasoning for your final suggestion, explaining how you balanced the constraints and the existing schedule.
 
   Output the result in the requested JSON format, including the new "suggestedTitle".

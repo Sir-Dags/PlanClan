@@ -10,7 +10,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Users, Calendar, CheckSquare, Clock } from 'lucide-react';
 import { isAfter, startOfToday } from 'date-fns';
-import { familyMembers } from '@/lib/data';
+import { clanMembers } from '@/lib/data';
 import PrivateRoute from '@/components/private-route';
 
 function DashboardStatCard({ title, value, change, icon: Icon, loading }: { title: string, value: string | number, change: string, icon: React.ElementType, loading?: boolean }) {
@@ -51,7 +51,7 @@ function DashboardContent() {
 
   const upcomingEvents = events.filter(e => isAfter(e.startTime, today));
   const completedToday = events.filter(e => e.isCompleted && isAfter(e.startTime, today));
-  const activeMembers = familyMembers.length;
+  const activeMembers = clanMembers.length;
 
   React.useEffect(() => {
     // This effect runs only on the client
@@ -106,7 +106,7 @@ function DashboardContent() {
                     <CardTitle>Welcome to PlanClan!</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p>This is your family's shared command center. You can see a quick overview of your schedule here. Use the sidebar to navigate to the Timeline, Calendar, or Logs.</p>
+                    <p>This is your clan's shared command center. You can see a quick overview of your schedule here. Use the sidebar to navigate to the Timeline, Calendar, or Logs.</p>
                   </CardContent>
                 </Card>
               </div>

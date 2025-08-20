@@ -7,7 +7,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'PlanClan',
-  description: 'Your family\'s shared calendar, simplified.',
+  description: 'Your clan\'s shared calendar, simplified.',
 };
 
 export default function RootLayout({
