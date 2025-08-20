@@ -45,12 +45,22 @@ function DashboardStatCard({ title, value, change, icon: Icon, loading }: { titl
 
 function DashboardContent() {
   const { events, loading: eventsLoading } = useEvents();
+  const [showWelcome, setShowWelcome] = React.useState(false);
 
   const today = startOfToday();
 
   const upcomingEvents = events.filter(e => isAfter(e.startTime, today));
   const completedToday = events.filter(e => e.isCompleted && isAfter(e.startTime, today));
   const activeMembers = familyMembers.length;
+
+  React.useEffect(() => {
+    // This effect runs only on the client
+    const welcomeSeen = localStorage.getItem('planclan_welcome_seen');
+    if (!welcomeSeen) {
+      setShowWelcome(true);
+      localStorage.setItem('planclan_welcome_seen', 'true');
+    }
+  }, []);
 
 
   return (
@@ -89,16 +99,18 @@ function DashboardContent() {
               loading={eventsLoading}
             />
           </div>
-           <div className="mt-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Welcome to PlanClan!</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>This is your family's shared command center. You can see a quick overview of your schedule here. Use the sidebar to navigate to the Timeline, Calendar, or Logs.</p>
-                </CardContent>
-              </Card>
-            </div>
+           {showWelcome && (
+            <div className="mt-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Welcome to PlanClan!</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>This is your family's shared command center. You can see a quick overview of your schedule here. Use the sidebar to navigate to the Timeline, Calendar, or Logs.</p>
+                  </CardContent>
+                </Card>
+              </div>
+           )}
         </main>
       </SidebarInset>
     </SidebarProvider>

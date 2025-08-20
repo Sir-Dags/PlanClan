@@ -5,7 +5,9 @@ Plan better. Together.
 PlanClan is a shared group calendar built for clans of all kinds. Whether it’s family, friends, roommates, or teams, PlanClan makes it easy to organize events, track tasks, and avoid schedule conflicts with smart scheduling and simple reminders—all in one place.
 
 ## Built With
-![[Firebase][FirebaseImg]][Firebaseurl]
+
+[![FirebaseImg]][Firebaseurl] 
+
 <!-- ![Figma][FigmaImg] -->
 
 
