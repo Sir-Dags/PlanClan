@@ -74,12 +74,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (firebaseUser) {
         const appUser = await getOrCreateUser(firebaseUser);
         setUser(appUser);
+        setLoading(false);
+        router.push('/dashboard');
       } else {
         setUser(null);
-      }
-      setLoading(false);
-       if (firebaseUser) {
-        router.push('/');
+        setLoading(false);
       }
     });
 

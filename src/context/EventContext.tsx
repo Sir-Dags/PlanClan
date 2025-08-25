@@ -5,7 +5,7 @@ import * as React from 'react';
 import type { Event } from '@/lib/types';
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/lib/firebase';
-import { collection, query, where, onSnapshot, addDoc, updateDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
+import { collection, query, onSnapshot, addDoc, updateDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
 
 interface EventContextType {
   events: Event[];
@@ -32,8 +32,11 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     }
 
     setLoading(true);
-    const eventsRef = collection(db, 'events');
-    const q = query(eventsRef, where('ownerId', '==', user.uid), orderBy('startTime', 'asc'));
+    //
+    // Query the "events" subcollection within the specific user's document.
+    //
+    const eventsRef = collection(db, 'users', user.uid, 'events');
+    const q = query(eventsRef, orderBy('startTime', 'asc'));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const userEvents: Event[] = [];
@@ -58,7 +61,8 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
 
 
   const toggleEventCompletion = async (eventId: string, isCompleted: boolean) => {
-    const eventRef = doc(db, 'events', eventId);
+    if (!user) return;
+    const eventRef = doc(db, 'users', user.uid, 'events', eventId);
     try {
         await updateDoc(eventRef, {
             isCompleted: isCompleted
@@ -73,10 +77,10 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
         throw new Error("You must be logged in to add an event.");
     }
     try {
-        await addDoc(collection(db, 'events'), {
-            ...newEvent,
-            ownerId: user.uid,
-        });
+        //
+        // Add the new event to the "events" subcollection of the current user.
+        //
+        await addDoc(collection(db, 'users', user.uid, 'events'), newEvent);
     } catch (error) {
         console.error("Error adding event: ", error);
     }

@@ -17,6 +17,6 @@ export type Event = {
   isRecurring?: boolean;
   conflictingEvent?: string;
   isCompleted?: boolean;
-  // UID of user who created the event
-  ownerId: string;
+  // ownerId is no longer needed as events are in a subcollection
+  // ownerId: string;
 };

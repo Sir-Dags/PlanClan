@@ -1,18 +1,4 @@
+
 {
-  "indexes": [
-    {
-      "collectionGroup": "events",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "ownerId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "startTime",
-          "order": "ASCENDING"
-        }
-      ]
-    }
-  ]
+  "indexes": []
 }

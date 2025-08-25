@@ -51,8 +51,8 @@ function DashboardContent() {
 
   const today = startOfToday();
 
-  const upcomingEvents = events.filter(e => isAfter(e.startTime, today));
-  const completedToday = events.filter(e => e.isCompleted && isAfter(e.startTime, today));
+  const upcomingEvents = events.filter(e => isAfter(new Date(e.startTime), today));
+  const completedToday = events.filter(e => e.isCompleted && isAfter(new Date(e.startTime), today));
   const activeMembers = clanMembers.length;
 
   React.useEffect(() => {
