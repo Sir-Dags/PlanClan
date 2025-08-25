@@ -6,12 +6,14 @@ import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { SiteSidebar } from '@/components/site-sidebar';
 import { SiteHeader } from '@/components/site-header';
 import { useEvents } from '@/context/EventContext';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Users, Calendar, CheckSquare, Clock } from 'lucide-react';
 import { isAfter, startOfToday } from 'date-fns';
 import { clanMembers } from '@/lib/data';
 import PrivateRoute from '@/components/private-route';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 function DashboardStatCard({ title, value, change, icon: Icon, loading }: { title: string, value: string | number, change: string, icon: React.ElementType, loading?: boolean }) {
   if (loading) {
@@ -54,7 +56,7 @@ function DashboardContent() {
   const activeMembers = clanMembers.length;
 
   React.useEffect(() => {
-    // This effect runs only on the client
+    // This effect runs only on the
     const welcomeSeen = localStorage.getItem('planclan_welcome_seen');
     if (!welcomeSeen) {
       setShowWelcome(true);
@@ -99,9 +101,9 @@ function DashboardContent() {
               loading={eventsLoading}
             />
           </div>
-           {showWelcome && (
-            <div className="mt-8">
-                <Card>
+          <div className="mt-8 grid gap-8 lg:grid-cols-3">
+             {showWelcome && (
+                <Card className="col-span-1 lg:col-span-1">
                   <CardHeader>
                     <CardTitle>Welcome to PlanClan!</CardTitle>
                   </CardHeader>
@@ -109,8 +111,8 @@ function DashboardContent() {
                     <p>This is your clan's shared command center. You can see a quick overview of your schedule here. Use the sidebar to navigate to the Timeline, Calendar, or Logs.</p>
                   </CardContent>
                 </Card>
-              </div>
-           )}
+             )}
+          </div>
         </main>
       </SidebarInset>
     </SidebarProvider>
