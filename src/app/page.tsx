@@ -93,10 +93,10 @@ export default function LandingPage() {
             {/* Text Content */}
             <div className="md:w-1/2 flex flex-col items-start text-left">
               <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tighter leading-tight mb-4">
-                Choose PlanClan to stay connected
+                Data stays yours. Connections stay strong.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                Stay on top of multiple schedules with shared calendars, tasks, and contacts in one place. Available on desktop, mobile, and web.
+              Plan Clan is built on trust. Your data stays yours — we never sell or share your information. At the same time, we make it easy to keep your clan connected, whether that means family, friends, or any group that matters to you. With smart scheduling, shared events, and a clean, simple design, Plan Clan helps your connections stay strong without ever compromising your privacy.
               </p>
               <div className="flex gap-4 items-center">
                 <Link href="/signin" passHref>
@@ -114,13 +114,13 @@ export default function LandingPage() {
 
             {/* Image Content */}
             <div className="md:w-1/2">
-               <div 
+               <div
                 className="rounded-xl border bg-card text-card-foreground shadow-lg"
                 data-ai-hint="screenshot of application"
                >
-                <img 
-                    src="https://placehold.co/1200x800.png" 
-                    alt="PlanClan App Screenshot" 
+                <img
+                    src="https://placehold.co/1200x800.png"
+                    alt="PlanClan App Screenshot"
                     className="rounded-xl"
                 />
                </div>
