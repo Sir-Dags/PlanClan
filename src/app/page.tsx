@@ -25,20 +25,20 @@ const Header = () => (
 function LatestChanges() {
     const changes = [
     {
-      time: "3 days ago",
-      description: "Premium request overage policy is generally available for Copilot Business.",
+      time: "August 25, 2024",
+      description: "Introduced a new professional landing page for a better user experience.",
     },
     {
-      time: "3 days ago",
-      description: "GraphQL Explorer removal from API documentation on November 1, 2025.",
+      time: "August 25, 2024",
+      description: "Added a dedicated changelog page to keep you informed about all our updates.",
     },
     {
-      time: "4 days ago",
-      description: "Enterprises can create organization roles for use across their enterprise, and...",
+      time: "August 22, 2024",
+      description: "Enhanced security by moving API keys to a secure environment file.",
     },
     {
-      time: "4 days ago",
-      description: "Pull request 'Files changed' public preview experience - August 21 updates.",
+      time: "August 22, 2024",
+      description: "The welcome message on the dashboard now only appears on your first visit.",
     },
   ];
 
@@ -56,7 +56,7 @@ function LatestChanges() {
           </div>
         ))}
          <Button variant="link" asChild className="p-0 h-auto">
-          <Link href="#">View changelog &rarr;</Link>
+          <Link href="/changelog">View changelog &rarr;</Link>
         </Button>
       </div>
   )
